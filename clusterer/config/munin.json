@@ -1,0 +1,34 @@
+{
+  "statsHost": "127.0.0.1"
+, "statsPort": "8082"
+, "statsPath": "/stats"
+, "statsKeys": {
+    "uptime": {
+        "title": "process uptime"
+      , "vlabel": "in days"
+      , "args": "--base 1000 -l 0"
+      , "scale": "no" }
+    , "memoryHeapUsed": {
+        "title": "used memory heap (v8)"
+      , "vlabel": "in bytes"
+      , "args": "--base 1024" }
+    , "memoryHeapTotal": {
+        "title": "total memory heap (v8)"
+      , "vlabel": "in bytes"
+      , "args": "--base 1024" }
+    , "memoryRss": {
+        "title": "memory RSS (process)"
+      , "vlabel": "in bytes"
+      , "args": "--base 1024" }
+    , "cpuUsage": {
+        "title": "process CPU usage"
+      , "vlabel": "%"
+      , "args": "--base 1000 --lower-limit 0"
+      , "scale": "no" }
+    , "responseTime": {
+        "title": "health report response time"
+      , "vlabel": "in nanoseconds"
+      , "args": "--base 1000 -l 0"
+      , "scale": "no" }
+  }
+}

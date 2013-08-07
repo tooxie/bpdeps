@@ -1,0 +1,33 @@
+{
+  "name": "clusterer",
+  "version": "0.0.2",
+  "description": "Simple cluster wrapper",
+  "author": {
+    "name": "Roman Ernst",
+    "email": "rernst@farbenmeer.net"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/farbenmeer/node-cluster.git"
+  },
+  "homepage": "https://github.com/farbenmeer/node-cluster",
+  "main": "lib/cluster.js",
+  "bin": {
+    "cluster": "./lib/cli.js"
+  },
+  "engine": "node >=0.10.0",
+  "preferGlobal": false,
+  "dependencies": {
+    "winston": ">= 0.7.1",
+    "usage": ">= 0.3.4",
+    "munin": "git+https://github.com/pex/nodejs-munin.git#master"
+  },
+  "readme": "## Simple cluster wrapper for monitoring and respawning\nThis is supposed to show the power and reliability of [cluster API](http://nodejs.org/api/cluster.html). It's respawning failing worker (app) processes automatically and is able to report it. This is ment to report system and worker health statuses as well.\n\n### Installing\n\n    $ npm install\n    $ npm link\n\n### Running\n\n    $ cluster app=test-app.js\n\nwhere `test-app.js` is the app to get clustered\n\n### Monitoring via Munin\n\nUsing [nodejs-munin](https://github.com/newleafdigital/nodejs-munin), there is a server listing on `127.0.0.1:8082/stats` for munin plugin. This can be changed in `config/munin.json`.\n\n#### Installing on Linux\n\nSetup a config file (e.g. `nodejs`) in `/etc/munin/plugin-conf.d/`:\n\n    [nodejs_*]\n    user root\n    env.statsHost 127.0.0.1\n    env.statsPort 8082\n    env.statsPath /stats\n\nCopy `<nodejs-munin>/lib/nodejs_munin_` to `/usr/share/munin/plugins/nodejs_` and symlink stats to this file. Currently thats\n\n    $ ln -s /usr/share/munin/plugins/nodejs_ /etc/munin/plugins/nodejs_cpuUsage\n    $ ln -s /usr/share/munin/plugins/nodejs_ /etc/munin/plugins/nodejs_memoryHeapTotal\n    $ ln -s /usr/share/munin/plugins/nodejs_ /etc/munin/plugins/nodejs_memoryHeapUsed\n    $ ln -s /usr/share/munin/plugins/nodejs_ /etc/munin/plugins/nodejs_memoryRss\n    $ ln -s /usr/share/munin/plugins/nodejs_ /etc/munin/plugins/nodejs_responseTime\n    $ ln -s /usr/share/munin/plugins/nodejs_ /etc/munin/plugins/nodejs_uptime\n\nRestart munin via `initctl restart munin-node` (depending on your munin installation...).\n\n### Debugging\nYou might run the wrapper by manually calling the cli:\n\n    $ node ./lib/cli.js app=app.js\n\n### TODO\n* Modulize monitor (and possibility to disable it)\n\n#### Resources & Thanks\n* [DeliveryHero for paying me for this](http://deliveryhero.com/)\n* [Idea on health-checks by Thomas Dimson](http://blog.argteam.com/coding/hardening-nodejs-production-process-supervisor/)\n* [Rowan Mannings simple intro](http://rowanmanning.com/posts/node-cluster-and-express/)\n\n#### Legal\n  Copyright (c) 2013 farbenmeer GmbH\n",
+  "readmeFilename": "README.md",
+  "_id": "clusterer@0.0.2",
+  "dist": {
+    "shasum": "94cc1105302ad20a687a1e5a03285348147099a1"
+  },
+  "_resolved": "git+ssh://git@github.com/:delivero/node-cluster.git#6bd8b43ba77707bece0cbc6980312d6721da99c4",
+  "_from": "clusterer@git+ssh://git@github.com:delivero/node-cluster.git"
+}
